@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Form = (props) => {
+const EditForm = (props) => {
   const [entry, setEntry] = useState({
     name: "",
     price: "",
@@ -8,6 +8,13 @@ const Form = (props) => {
     discription:""
   });
 
+
+  useEffect(() => {
+    setEntry()
+    return () => {
+      cleanup
+    }
+  }, [input])
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -73,4 +80,4 @@ const Form = (props) => {
   );
 };
 
-export default Form;
+export default EditForm;

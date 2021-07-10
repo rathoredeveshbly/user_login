@@ -6,7 +6,7 @@ import Table from './table';
 function App(props) {
   
 const [data,setData]=useState([])
-const [toggle, setToggle] = useState(false)
+const [toggle, setToggle] = useState(0)
 const [search, setSearch] = useState("")
 const [arrayIndex, setArrayIndex] = useState(0)
 
@@ -51,7 +51,7 @@ const handleSearch = e =>{
 
   return (
     <div>
-      {toggle === true ? (
+      {toggle === 1 ? (
         <Form setToggle={setToggle} handleSubmit={handleSubmit} />
       ) : (
         <Table

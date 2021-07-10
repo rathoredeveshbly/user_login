@@ -27,7 +27,7 @@ const Table = (props) => {
       <div className="row">
         <button
           className="btn btn-primary m-1"
-          onClick={() => props.setToggle(true)}
+          onClick={() => props.setToggle(1)}
         >
           Add New Item
         </button>
