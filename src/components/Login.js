@@ -32,11 +32,11 @@ class Login extends Component {
             password:password
         })
         // if(username==="xyz" && password ==="123"){
-        //     localStorage.setItem('token',"asdfghjkl")
-        //     this.setState({
-        //         loggedIn:true,
-        //         array
-        //     })
+            localStorage.setItem('token',"asdfghjkl")
+            this.setState({
+                loggedIn:true,
+                array
+            })
         // }
         this.setState({
             loggedIn:true,

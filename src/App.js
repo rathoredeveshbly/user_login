@@ -9,6 +9,16 @@ const [data,setData]=useState([])
 const [toggle, setToggle] = useState(0)
 const [search, setSearch] = useState("")
 const [arrayIndex, setArrayIndex] = useState(0)
+const [index,setIndex] = useState(-1)
+
+const handleEdit=(i)=>{
+  console.log(i)
+  setIndex(i)
+  setToggle(1)
+}
+
+let formData = index !== -1 ? data[index] :null
+console.log(formData)
 
 const handleSubmit=(obj)=>{
   console.log(obj)
@@ -16,13 +26,13 @@ const handleSubmit=(obj)=>{
   setArrayIndex(-1)
 }
 
-const handleDelete=(i)=>{
+const handleItemUpdate = (obj, index) =>{
   let array=[...data]
-  array.splice(i,1)
-  console.log(array)
-  setData(array)
+  array.splice(index,1,obj)
+   setData(array)
+   setIndex(-1)
 }
-const handleEdit=(i)=>{
+const handleDelete=(i)=>{
   let array=[...data]
   array.splice(i,1)
   console.log(array)
@@ -52,7 +62,7 @@ const handleSearch = e =>{
   return (
     <div>
       {toggle === 1 ? (
-        <Form setToggle={setToggle} handleSubmit={handleSubmit} />
+        <Form setToggle={setToggle} handleItemUpdate={handleItemUpdate} index={index} formData={formData} handleSubmit={handleSubmit} />
       ) : (
         <Table
           setToggle={setToggle}

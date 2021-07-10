@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Form = (props) => {
   const [entry, setEntry] = useState({
     name: "",
     price: "",
     quantity: "",
-    discription:""
+    discription: "",
   });
 
+  useEffect(() => {
+    if (props.formData) {
+      setEntry(props.formData);
+    }
+  }, [props.formData]);
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -22,8 +27,16 @@ const Form = (props) => {
     e.preventDefault();
     const obj = entry;
     props.handleSubmit(obj);
-    setEntry({ name: "", price: "", quantity: "", discription:"" });
-    props.setToggle(false);
+    setEntry({ name: "", price: "", quantity: "", discription: "" });
+    props.setToggle(0);
+  };
+
+  const handleItemUpdate = (e) => {
+    e.preventDefault();
+    const obj = entry;
+    props.handleItemUpdate(obj, props.index);
+    setEntry({ name: "", price: "", quantity: "", discription: "" });
+    props.setToggle(0);
   };
 
   return (
@@ -67,8 +80,11 @@ const Form = (props) => {
           onChange={handleChange}
         />
       </label>
-
-      <button onClick={handleSubmit}>Add Item</button>
+      {props.index !== -1 ? (
+        <button onClick={handleItemUpdate}>Update Item</button>
+      ) : (
+        <button onClick={handleSubmit}>Add Item</button>
+      )}
     </form>
   );
 };

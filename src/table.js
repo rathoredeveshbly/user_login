@@ -66,7 +66,7 @@ const Table = (props) => {
             <div className="col-3">{val.discription}</div>
             <div className="col-2">
               <button
-                onClick={() => props.setToggle(true)}
+                onClick={() => props.handleEdit(index)}
                 className="btn btn-success m-1"
               >
                 Edit
