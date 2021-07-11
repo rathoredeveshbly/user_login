@@ -8,7 +8,6 @@ function App(props) {
 const [data,setData]=useState([])
 const [toggle, setToggle] = useState(0)
 const [search, setSearch] = useState("")
-const [arrayIndex, setArrayIndex] = useState(0)
 const [index,setIndex] = useState(-1)
 
 const handleEdit=(i)=>{
@@ -23,7 +22,6 @@ console.log(formData)
 const handleSubmit=(obj)=>{
   console.log(obj)
   setData(data.concat(obj))
-  setArrayIndex(-1)
 }
 
 const handleItemUpdate = (obj, index) =>{
@@ -42,12 +40,13 @@ const handleDelete=(i)=>{
 const handleSearch = e =>{
   let array=[...data]
     setSearch(e.target.value);
-    const data1 = array.filter(val=>{
+    const searchedData = array.filter(val=>{
       return val.name.toLowerCase().indexOf(search.toLowerCase()) !==-1
     })
-    setData(data1)
+    console.log("filteredData",searchedData)
+    setData(searchedData)
+    console.log("main data", array);
   };
-  console.log(search);
 
   // sorting function
   const sortCol =(index)=>{
@@ -62,7 +61,12 @@ const handleSearch = e =>{
   return (
     <div>
       {toggle === 1 ? (
-        <Form setToggle={setToggle} handleItemUpdate={handleItemUpdate} index={index} formData={formData} handleSubmit={handleSubmit} />
+        <Form setToggle={setToggle} 
+        handleItemUpdate={handleItemUpdate} 
+        index={index} 
+        formData={formData} 
+        handleSubmit={handleSubmit} 
+        />
       ) : (
         <Table
           setToggle={setToggle}
